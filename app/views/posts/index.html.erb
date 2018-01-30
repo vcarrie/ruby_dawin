@@ -1,11 +1,24 @@
 <%	 @posts.each do |post|%>
 
 
-   <%=	 post.title %>
+  <%= image_tag post.image.small %>
+<h3>
+  <%= link_to  post_path(post) do %>
+    <%=	 post.title %>
+  <% end %>
+</h3>
+  <%= post.date_post %>
 
-  <%= link_to "Plus d'infos", user_post_path(@user,post[:id]) %><br>
+  <br>
+
+  <%= post.user.fullname %>
+
+  <br><br>
+
+  <%= post.chapeau %>
+
+  <br><br>
+  -----------------------------------------------------------
+  <br><br>
 <% end %>
-
-<%= link_to "Add Post", new_user_post_path %>
-
 

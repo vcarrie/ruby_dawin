@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :load_user, only: [:show, :update, :edit, :destroy]
+  before_action :load_Post, only: [:show, :update, :edit, :destroy]
+
 
 
   def index
@@ -51,5 +53,9 @@ class UsersController < ApplicationController
 
   def load_user
     @user = User.find(params[:id])
+  end
+
+  def load_Post
+    @post = Post.find(params[:post_id])
   end
 end

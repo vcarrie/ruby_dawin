@@ -1,56 +1,48 @@
 class PostsController < ApplicationController
 
   before_action :load_post, only: [:show, :update, :edit, :destroy]
-  before_action :authenticate_user!, only: [:show, :update, :edit, :destroy]
+
 
   def index
-    @user = User.find(params[:user_id])
-    @posts = Post.all
+    @posts = Post.all.order(date_post: :desc)
   end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @post = Post.new(post_params)
     @post.user = @user
     @post.date_post = Time.now
     if @post.save
-      redirect_to user_post_path(@user, @post)
+      redirect_to posts_path
     else
       render "new"
     end
   end
 
   def new
-    @user = User.find(params[:user_id])
     @post = Post.new
   end
 
   def show
-    @user = User.find(params[:user_id])
-    if @user != @post.user
-      redirect_to user_post_path(@user)
-    end
+
   end
 
   def edit
-    @user = User.find(params[:user_id])
   end
 
   def update
 
-    @user = User.find(params[:user_id])
     @post.update_attributes(post_params)
     if @post.save
-      redirect_to user_post_path(@user, @post)
+      redirect_to post_path(@post)
     else
       render "show"
     end
   end
 
   def destroy
-    @user = User.find(params[:user_id])
     @post.destroy
-    redirect_to users_path
+    redirect_to posts_path
   end
 
   private

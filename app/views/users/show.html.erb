@@ -1,14 +1,31 @@
-<%= @user.last_name %>
+<%= @user.fullname %>
 <br><br>
 
+<%= @user.email %>
 
 <br>
 
-<%	 @user.posts.each do |post|%>
-  <%= post.title %> <%= link_to  user_post_path(@user,post[:id]) do %>
+<%	 @user.post.each do |post|%>
 
-  <% end %><br>
+  <br><br>
+  -----------------------------------------------------------
+  <br><br>
+  <%= image_tag post.image.thumb %>
+
+    <%= link_to  post_path(post) do %>
+      <%=	 post.title %>
+    <% end %>
+  <br>
+  <%= post.date_post %>
+
+  <br>
+
+  By <%= post.user.fullname %>
+
+  <br><br>
+
+  <%= post.chapeau %>
+
+
 <%	end  %>
-
-
-<%= link_to "Add post", new_user_post_path(@user) %>
+<br><br>
