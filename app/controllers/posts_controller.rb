@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = Comment.all
+    @comments = Comment.where(:post_id => @post)
     @comment = Comment.new
   end
 
