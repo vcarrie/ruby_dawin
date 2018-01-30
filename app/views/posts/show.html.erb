@@ -23,4 +23,26 @@
 
 <% end %>
 
+<%= form_for @comment, url:  post_comments_path(@post) do |f| %>
+
+  <%= f.text_field :body %>
+  <%= f.submit %>
+
+<% end %>
+
+<br><br>
+
+<%	 @comments.each do |com|%>
+
+  <br><br>
+  -----------------------------------------------------------
+  <br><br>
+
+
+  <%= com.body  %>  ----  By <%= com.user.fullname  %>
+
+
+<%	end  %>
+<br><br><br><br><br>
+
 <br>
