@@ -1,0 +1,14 @@
+
+<%	 @users.each do |user|%>
+
+  <%=	 user.last_name %> <%=	 user.id %>
+
+
+<% end %>
+
+<% if user_signed_in? %>
+
+  <%= link_to "create pote", new_user_post_path(@user) %>
+
+<% end %>
+

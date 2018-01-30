@@ -1,0 +1,11 @@
+<%	 @posts.each do |post|%>
+
+
+   <%=	 post.title %>
+
+  <%= link_to "Plus d'infos", user_post_path(@user,post[:id]) %><br>
+<% end %>
+
+<%= link_to "Add Post", new_user_post_path %>
+
+
